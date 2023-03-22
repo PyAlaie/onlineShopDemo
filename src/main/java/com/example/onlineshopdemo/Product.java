@@ -64,4 +64,16 @@ public class Product {
     public int getCount() {
         return count;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                ", desciption='" + desciption + '\'' +
+                ", seller=" + seller +
+                ", category=" + category +
+                '}';
+    }
 }

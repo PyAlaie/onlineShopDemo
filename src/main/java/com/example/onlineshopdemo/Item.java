@@ -20,4 +20,12 @@ public class Item {
     public Product getProduct() {
         return product;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "product=" + product +
+                ", count=" + count +
+                '}';
+    }
 }

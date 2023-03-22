@@ -32,4 +32,14 @@ public class Costumer extends User{
     public ArrayList<Cart> getCarts() {
         return carts;
     }
+
+    @Override
+    public String toString() {
+        return "Costumer{" +
+                "wallet=" + wallet +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

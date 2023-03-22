@@ -11,6 +11,14 @@ public class Cart {
         return items;
     }
 
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "items=" + items +
+                ", checkedOut=" + checkedOut +
+                '}';
+    }
+
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -39,4 +47,6 @@ public class Cart {
         Cart c = new Cart();
 //        c.checkout();
     }
+
+
 }

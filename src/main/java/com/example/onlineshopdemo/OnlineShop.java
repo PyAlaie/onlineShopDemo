@@ -20,9 +20,24 @@ public class OnlineShop {
     private static Seller loggedInSeller = null;
     private static Costumer loggedInCostumer = null;
     private static User loggedInUser = null;
+    public static ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public static ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public static ArrayList<FundRequest> getFundRequests() {
+        return fundRequests;
+    }
 
     public static String getName() {
         return name;
+    }
+
+    public static ArrayList<Seller> getSellers() {
+        return sellers;
     }
 
     public static void setName(String name) {
@@ -124,6 +139,16 @@ public class OnlineShop {
         }
         return res;
     }
+
+    public static ArrayList<Seller> getUncheckedSellers(){
+        ArrayList<Seller> res = new ArrayList<>();
+        for(Seller req : sellers){
+            if(!req.isChecked()){
+                res.add(req);
+            }
+        }
+        return res;
+    }
     public static ArrayList<Order> getUncheckedOrders(){
         ArrayList<Order> res = new ArrayList<>();
         for(Order order : orders){
@@ -135,7 +160,7 @@ public class OnlineShop {
     }
 
     public static void addSeller(Seller seller){
-        if(!doesAdminExist(seller.username)){
+        if(!doesSellerExist(seller.username)){
             sellers.add(seller);
         }
     }
@@ -235,5 +260,18 @@ public class OnlineShop {
     public static void orderCart(Cart cart){
         Order order = cart.checkout(loggedInCostumer);
         orders.add(order);
+    }
+
+    public static boolean isBlank(String input){
+        if(input.equals("")){
+            return true;
+        }
+        return false;
+    }
+
+    public static void addFundRequest(FundRequest fundRequest){
+        if(!fundRequests.contains(fundRequest)){
+            fundRequests.add(fundRequest);
+        }
     }
 }

@@ -16,4 +16,11 @@ public class Wallet {
     public int getBalance() {
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "Wallet{" +
+                "balance=" + balance +
+                '}';
+    }
 }

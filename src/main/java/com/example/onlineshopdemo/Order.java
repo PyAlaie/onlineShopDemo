@@ -55,4 +55,14 @@ public class Order {
         this.isChecked = true;
         this.isConfirmed = false;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "cart=" + cart +
+                ", date=" + date +
+                ", totalPrice=" + totalPrice +
+                ", costumer=" + costumer +
+                '}';
+    }
 }

@@ -11,6 +11,14 @@ public class Seller extends User{
         this.setRole("seller");
     }
 
+    public boolean isAuth() {
+        return isAuth;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
     public void authorize(){
         this.isAuth = true;
         this.isChecked = true;
@@ -19,5 +27,15 @@ public class Seller extends User{
     public void unauthorize(){
         this.isChecked = true;
         this.isAuth = false;
+    }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "isAuth=" + isAuth +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

@@ -6,6 +6,11 @@ public class FundRequest {
     private boolean isChecked = false;
     private boolean isConfirmed = false;
 
+    public FundRequest(int amount, Costumer costumer) {
+        this.amount = amount;
+        this.costumer = costumer;
+    }
+
     public int getAmount() {
         return amount;
     }
