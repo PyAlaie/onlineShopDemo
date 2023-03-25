@@ -15,6 +15,80 @@ public class OnlineShop {
     private static ArrayList<Product> products = new ArrayList<Product>();
     private static ArrayList<Order> orders = new ArrayList<Order>();
     private static ArrayList<Cart> carts = new ArrayList<Cart>();
+    private static ArrayList<Category> categories = new ArrayList<>();
+    private static ArrayList<SubCategory> subCategories = new ArrayList<>();
+
+    public static int getTotalProfit() {
+        return totalProfit;
+    }
+
+    public static void setTotalProfit(int totalProfit) {
+        OnlineShop.totalProfit = totalProfit;
+    }
+
+    public static void setAdmins(ArrayList<Admin> admins) {
+        OnlineShop.admins = admins;
+    }
+
+    public static void setSellers(ArrayList<Seller> sellers) {
+        OnlineShop.sellers = sellers;
+    }
+
+    public static ArrayList<Costumer> getCostumers() {
+        return costumers;
+    }
+
+    public static void setCostumers(ArrayList<Costumer> costumers) {
+        OnlineShop.costumers = costumers;
+    }
+
+    public static void setFundRequests(ArrayList<FundRequest> fundRequests) {
+        OnlineShop.fundRequests = fundRequests;
+    }
+
+    public static void setProducts(ArrayList<Product> products) {
+        OnlineShop.products = products;
+    }
+
+    public static void setOrders(ArrayList<Order> orders) {
+        OnlineShop.orders = orders;
+    }
+
+    public static ArrayList<Cart> getCarts() {
+        return carts;
+    }
+
+    public static void setCarts(ArrayList<Cart> carts) {
+        OnlineShop.carts = carts;
+    }
+
+    public static ArrayList<Category> getCategories() {
+        return categories;
+    }
+
+    public static void setCategories(ArrayList<Category> categories) {
+        OnlineShop.categories = categories;
+    }
+
+    public static ArrayList<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public static void setSubCategories(ArrayList<SubCategory> subCategories) {
+        OnlineShop.subCategories = subCategories;
+    }
+
+    public static void setLoggedInAdmin(Admin loggedInAdmin) {
+        OnlineShop.loggedInAdmin = loggedInAdmin;
+    }
+
+    public static void setLoggedInSeller(Seller loggedInSeller) {
+        OnlineShop.loggedInSeller = loggedInSeller;
+    }
+
+    public static void setLoggedInCostumer(Costumer loggedInCostumer) {
+        OnlineShop.loggedInCostumer = loggedInCostumer;
+    }
 
     private static Admin loggedInAdmin = null;
     private static Seller loggedInSeller = null;
@@ -272,6 +346,46 @@ public class OnlineShop {
     public static void addFundRequest(FundRequest fundRequest){
         if(!fundRequests.contains(fundRequest)){
             fundRequests.add(fundRequest);
+        }
+    }
+
+    public static ArrayList<Order> getSellerOrders(Seller seller){
+        ArrayList<Order> res = new ArrayList<>();
+        for(Order order : orders){
+            if(order.getSeller().equals(seller)){
+                res.add(order);
+            }
+        }
+        return res;
+    }
+
+    public static Category getCategoryByTitle(String title){
+        for(Category category : categories){
+            if(category.getTitle().equals(title)){
+                return category;
+            }
+        }
+        return null;
+    }
+
+    public static SubCategory getSubCategories(Category c){
+        for(SubCategory subCategory : subCategories){
+            if(subCategory.getCategory().equals(c)){
+                return subCategory;
+            }
+        }
+        return null;
+    }
+
+    public static void addCategory(Category category){
+        if(!categories.contains(category)){
+            categories.add(category);
+        }
+    }
+
+    public static void addSubCategory(SubCategory subCategory){
+        if(!subCategories.contains(subCategory)){
+            subCategories.add(subCategory);
         }
     }
 }

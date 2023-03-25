@@ -9,6 +9,10 @@ public class SubCategory{
         this.subTitle = subTitle;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public String getSubTitle() {
         return subTitle;
     }

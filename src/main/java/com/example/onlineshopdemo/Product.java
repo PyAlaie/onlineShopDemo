@@ -21,6 +21,14 @@ public class Product {
         this.category = category;
     }
 
+    public Product(String name, int price, int count,Seller s, SubCategory category) {
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.category = category;
+        this.seller = s;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

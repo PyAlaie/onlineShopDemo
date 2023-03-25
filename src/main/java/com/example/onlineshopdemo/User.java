@@ -1,5 +1,7 @@
 package com.example.onlineshopdemo;
 
+import java.util.Objects;
+
 public class User {
     protected String username;
     protected String password;
@@ -44,4 +46,13 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
+    }
+
 }

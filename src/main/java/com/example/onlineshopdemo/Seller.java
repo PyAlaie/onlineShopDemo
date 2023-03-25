@@ -1,9 +1,32 @@
 package com.example.onlineshopdemo;
 
+import java.util.ArrayList;
+
 public class Seller extends User{
     private boolean isAuth = false;
     private boolean isChecked = false;
     private Wallet wallet;
+    private ArrayList<Product> products = new ArrayList<>();
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setAuth(boolean auth) {
+        isAuth = auth;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
 
     public Seller(String username, String password, String email) {
         super(username, password, email);

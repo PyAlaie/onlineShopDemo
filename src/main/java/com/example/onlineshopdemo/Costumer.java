@@ -8,6 +8,14 @@ public class Costumer extends User{
     private Wallet wallet = new Wallet();;
     private ArrayList<Cart> carts = new ArrayList<Cart>();
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Costumer(String username, String password, String email) {
         super(username, password, email);
         this.setRole("costumer");
@@ -29,8 +37,15 @@ public class Costumer extends User{
         carts.add(new Cart());
     }
 
-    public ArrayList<Cart> getCarts() {
-        return carts;
+    public Cart getCart() {
+        if(carts.size() < 1){
+            carts.add(new Cart());
+        }
+        return carts.get(0);
+    }
+
+    public void clearCart(){
+        this.carts.clear();
     }
 
     @Override
