@@ -1,5 +1,6 @@
 package com.example.onlineshopdemo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
@@ -8,6 +9,7 @@ public class User {
     protected String email;
 
     private String role = null;
+    private ArrayList<Notification> notifications = null;
 
     public String getRole() {
         return role;
@@ -55,4 +57,15 @@ public class User {
         return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
 
+    public void addNotification(Notification notification){
+        notifications.add(notification);
+    }
+
+    public void clearNotifications(){
+        notifications.clear();
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
 }
