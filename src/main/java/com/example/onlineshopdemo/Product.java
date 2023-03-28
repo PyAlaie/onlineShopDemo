@@ -1,6 +1,7 @@
 package com.example.onlineshopdemo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Product {
     private String name;
@@ -10,6 +11,7 @@ public class Product {
     private Seller seller = null;
     private SubCategory category = null;
     private ArrayList<Comment>  comments = new ArrayList<>();
+    private HashMap<Costumer, Integer> ratings = new HashMap<>();
 
     public Product(String name, int price, int count) {
         this.name = name;
@@ -104,5 +106,21 @@ public class Product {
 
     public ArrayList<Comment> getComments() {
         return comments;
+    }
+
+    public void addOrEditRating(Costumer costumer, int rating){
+        ratings.put(costumer, rating);
+    }
+
+    public double calculateRating(){
+        double res = 0;
+        for(Integer i : ratings.values()){
+            res += i;
+        }
+        return res/ratings.size();
+    }
+
+    public int getRating(Costumer costumer){
+        return ratings.getOrDefault(costumer, -1);
     }
 }
