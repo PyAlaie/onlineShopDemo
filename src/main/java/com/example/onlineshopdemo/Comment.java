@@ -37,4 +37,10 @@ public class Comment {
                 ", costumer=" + costumer +
                 '}';
     }
+
+    public Comment(String text, Product product, Costumer costumer) {
+        this.text = text;
+        this.product = product;
+        this.costumer = costumer;
+    }
 }

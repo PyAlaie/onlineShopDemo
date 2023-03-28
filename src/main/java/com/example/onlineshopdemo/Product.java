@@ -1,5 +1,7 @@
 package com.example.onlineshopdemo;
 
+import java.util.ArrayList;
+
 public class Product {
     private String name;
     private int price;
@@ -7,6 +9,7 @@ public class Product {
     public String desciption;
     private Seller seller = null;
     private SubCategory category = null;
+    private ArrayList<Comment>  comments = new ArrayList<>();
 
     public Product(String name, int price, int count) {
         this.name = name;
@@ -31,6 +34,10 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDesciption() {
+        return desciption;
     }
 
     public void setPrice(int price) {
@@ -83,5 +90,19 @@ public class Product {
                 ", seller=" + seller +
                 ", category=" + category +
                 '}';
+    }
+
+    public void decreaseCount(int amount){
+        this.count -= amount;
+    }
+
+    public void addComment(Comment comment){
+        if(!comment.getText().trim().equals("")){
+            comments.add(comment);
+        }
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
     }
 }
