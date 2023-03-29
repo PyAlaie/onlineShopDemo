@@ -1,5 +1,7 @@
 package com.example.onlineshopdemo;
 
+import javafx.scene.control.Alert;
+
 import java.util.ArrayList;
 
 public class OnlineShop {
@@ -273,8 +275,9 @@ public class OnlineShop {
 
     public static void addProduct(Product product){
         if(!doesProductExist(product.getName())){
-            product.setSeller(loggedInSeller);
+//            product.setSeller(loggedInSeller);
             products.add(product);
+            product.getSeller().addProduct(product);
         }
     }
 
@@ -332,8 +335,17 @@ public class OnlineShop {
     }
 
     public static void orderCart(Cart cart){
+        if(loggedInCostumer.getWallet().getBalance() < cart.calculteTotalPrice()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("You do not have enough money!");
+            alert.setContentText("Please charge your wallet before ordering this cart.");
+            alert.show();
+            return;
+        }
         Order order = cart.checkout(loggedInCostumer);
         orders.add(order);
+        loggedInCostumer.clearCart();
+        loggedInCostumer.addCart();
     }
 
     public static boolean isBlank(String input){
@@ -352,7 +364,7 @@ public class OnlineShop {
     public static ArrayList<Order> getSellerOrders(Seller seller){
         ArrayList<Order> res = new ArrayList<>();
         for(Order order : orders){
-            if(order.getSeller().equals(seller)){
+            if(order.getSeller().contains(seller)){
                 res.add(order);
             }
         }
@@ -368,13 +380,14 @@ public class OnlineShop {
         return null;
     }
 
-    public static SubCategory getSubCategories(Category c){
+    public static ArrayList<SubCategory> getSubCategories(Category c){
+        ArrayList<SubCategory> res = new ArrayList<>();
         for(SubCategory subCategory : subCategories){
             if(subCategory.getCategory().equals(c)){
-                return subCategory;
+                res.add(subCategory);
             }
         }
-        return null;
+        return res;
     }
 
     public static void addCategory(Category category){
@@ -387,5 +400,39 @@ public class OnlineShop {
         if(!subCategories.contains(subCategory)){
             subCategories.add(subCategory);
         }
+    }
+
+    public static void increaseTotalProfit(int amount){
+        totalProfit += amount;
+    }
+
+    public static ArrayList<Order> getCostumerOrders(Costumer costumer){
+        ArrayList<Order> res = new ArrayList<>();
+        for(Order order : orders){
+            if(order.getCostumer().equals(costumer)){
+                res.add(order);
+            }
+        }
+        return res;
+    }
+
+    public static ArrayList<Product> getProductsBySubCategory(SubCategory subCategory){
+        ArrayList<Product> res = new ArrayList<>();
+        for(Product product : products){
+            if(product.getCategory().equals(subCategory)){
+                res.add(product);
+            }
+        }
+        return res;
+    }
+
+    public static ArrayList<Product> getProductsByCategory(Category category){
+        ArrayList<Product> res = new ArrayList<>();
+        for(Product product : products){
+            if(product.getCategory().getCategory().equals(category)){
+                res.add(product);
+            }
+        }
+        return res;
     }
 }
