@@ -2,6 +2,7 @@ package com.example.onlineshopdemo;
 
 import javafx.scene.control.Alert;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class OnlineShop {
@@ -19,6 +20,10 @@ public class OnlineShop {
     private static ArrayList<Cart> carts = new ArrayList<Cart>();
     private static ArrayList<Category> categories = new ArrayList<>();
     private static ArrayList<SubCategory> subCategories = new ArrayList<>();
+    private static Admin loggedInAdmin = null;
+    private static Seller loggedInSeller = null;
+    private static Costumer loggedInCostumer = null;
+    private static User loggedInUser = null;
 
     public static int getTotalProfit() {
         return totalProfit;
@@ -92,10 +97,6 @@ public class OnlineShop {
         OnlineShop.loggedInCostumer = loggedInCostumer;
     }
 
-    private static Admin loggedInAdmin = null;
-    private static Seller loggedInSeller = null;
-    private static Costumer loggedInCostumer = null;
-    private static User loggedInUser = null;
     public static ArrayList<Order> getOrders() {
         return orders;
     }
@@ -146,14 +147,6 @@ public class OnlineShop {
 
     public static void setLoggedInUser(User loggedInUser) {
         OnlineShop.loggedInUser = loggedInUser;
-    }
-
-    public static void main(String[] args) {
-//        Admin a = new Admin("arshia","1234","asdas");
-//        OnlineShop shop = new OnlineShop();
-//        shop.getLoggedInCostumer().getCarts().get(0).addItem(new Item());
-//        shop.addAdmin(a);
-//        System.out.println(shop.getAdmins());
     }
 
     public static Admin getLoggedInAdmin() {
@@ -434,5 +427,61 @@ public class OnlineShop {
             }
         }
         return res;
+    }
+
+    public static void save(){
+        Database db = new Database();
+        db.setName(name);
+        db.setWebAddress(webAddress);
+        db.setSupportPhoneNumber(supportPhoneNumber);
+        db.setTotalProfit(totalProfit);
+        db.setAdmins(admins);
+        db.setSellers(sellers);
+        db.setCostumers(costumers);
+        db.setFundRequests(fundRequests);
+        db.setProducts(products);
+        db.setOrders(orders);
+        db.setCarts(carts);
+        db.setCategories(categories);
+        db.setSubCategories(subCategories);
+
+        try {
+            FileOutputStream fos = new FileOutputStream("saved_data");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(db);
+            System.out.println("The Object  was succesfully written to a file");
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static boolean tryToLoad(){
+        try{
+            FileInputStream fis = new FileInputStream("saved_data");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            Database db = (Database) obj;
+
+            name = db.getName();
+            webAddress = db.getWebAddress();
+            supportPhoneNumber = db.getSupportPhoneNumber();
+            totalProfit = db.getTotalProfit();
+            admins = db.getAdmins();
+            sellers = db.getSellers();
+            costumers = db.getCostumers();
+            fundRequests = db.getFundRequests();
+            products = db.getProducts();
+            orders = db.getOrders();
+            carts = db.getCarts();
+            categories = db.getCategories();
+            subCategories = db.getSubCategories();
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
