@@ -484,4 +484,24 @@ public class OnlineShop {
             return false;
         }
     }
+    public static ArrayList<Product> search(String searchText){
+        ArrayList<Product> res = new ArrayList<>();
+
+        ArrayList<String> queries = new ArrayList<>();
+        for(String item : searchText.split("\\s+")){
+            queries.add(".*" + item + ".*");
+        }
+
+        Test.importTestCases();
+        for(Product product : products){
+            for(String query : queries){
+                if(product.getName().matches(query)){
+                    res.add(product);
+                    break;
+                }
+            }
+        }
+
+        return res;
+    }
 }
