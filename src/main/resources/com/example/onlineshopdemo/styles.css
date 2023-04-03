@@ -1,0 +1,122 @@
+.name_label{
+    -fx-font-size: 35px;
+    -fx-padding: 10px;
+}
+
+.button{
+    -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.5), 10, 0, 0, 0);
+    -fx-background-color: #C06C84;
+    -fx-text-fill: white;
+}
+
+.property_label{
+    -fx-font-size:22px;
+    -fx-padding:10px;
+}
+
+.description_label{
+    -fx-font-size: 16px;
+    -fx-padding:10px;
+    -fx-opacity: 0.9;
+}
+
+.buy_button{
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-label-padding:10px;
+    -fx-font-size: 20px;
+}
+
+.rate_button{
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-label-padding:10px;
+    -fx-font-size: 20px;
+    -fx-translate-x:200px;
+}
+
+.comments_title{
+    -fx-font-size: 22px;
+}
+
+.comments_text{
+    -fx-font-size: 18px;
+    -fx-opacity: 0.9;
+}
+
+.notification_btn{
+    -fx-font-size: 18;
+    -fx-pref-height: 35;
+    -fx-label-padding: 10;
+}
+
+* {
+   -fx-primary-color: #60A9A6;
+   -fx-secondary-color: #F5FEC0;
+   -fx-third-color: #FDDEDE;
+}
+
+.AnchorPane{
+    -fx-background-color: -fx-primary-color;
+}
+
+.login-button{
+    -fx-background-color: -fx-secondary-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.5), 10, 0, 0, 0);
+    -fx-text-fill: black;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.5), 10, 0, 0, 0);
+}
+
+#title{
+    -fx-text-fill: white;
+}
+
+#costumerRadioButton{
+    -fx-text-fill: white;
+}
+
+#sellerRadioButton{
+    -fx-text-fill: white;
+}
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.5), 10, 0, 0, 0);
+}
+
+.label{
+    -fx-effect: dropshadow(three-pass-box, rgba(10,10,10,0.5), 10, 0, 0, 0);
+}
+
+.navbar-button{
+    -fx-background-color: #355C7D;
+    -fx-text-fill: white;
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+    -fx-border-radius: 0;
+}
+
+.tab-button{
+    -fx-background-color: #6C5B7B;
+    -fx-text-fill: white;
+    -fx-border-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: white;
+}
+
+.green{
+    -fx-background-color: #36AE7C;
+}
+
+.red{
+    -fx-background-color: #EB5353;
+}
+
+.yellow{
+    -fx-background-color: #187498;
+}
