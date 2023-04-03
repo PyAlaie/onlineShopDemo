@@ -1,9 +1,10 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Product {
+public class Product implements Serializable {
     private String name;
     private int price;
     private int count;
@@ -101,6 +102,10 @@ public class Product {
     public void addComment(Comment comment){
         if(!comment.getText().trim().equals("")){
             comments.add(comment);
+
+            Notification notification = new Notification("New comment!");
+            notification.setText("You have a new comment on product " + this.name + " from Costumer " + comment.getCostumer());
+            seller.addNotification(notification);
         }
     }
 

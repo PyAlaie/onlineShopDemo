@@ -1,12 +1,14 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Costumer extends User{
+public class Costumer extends User implements Serializable {
     private String phoneNumber = null;
     private String address = null;
     private Wallet wallet = new Wallet();;
     private ArrayList<Cart> carts = new ArrayList<Cart>();
+    private ArrayList<Item> perchasedProducts = new ArrayList<>();
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -19,6 +21,10 @@ public class Costumer extends User{
     public Costumer(String username, String password, String email) {
         super(username, password, email);
         this.setRole("costumer");
+
+        Notification welcome = new Notification("Welcome to Online Shop!");
+        welcome.setText("Hope u have a fun time buying stuff. please go to profile section and complete you profile.");
+        this.addNotification(welcome);
     }
 
     public String getPhoneNumber() {
@@ -56,5 +62,13 @@ public class Costumer extends User{
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void addToPerchasedProducts(Item item){
+        perchasedProducts.add(item);
+    }
+
+    public ArrayList<Item> getPerchasedProducts() {
+        return perchasedProducts;
     }
 }

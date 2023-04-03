@@ -1,15 +1,16 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     protected String username;
     protected String password;
     protected String email;
 
     private String role = null;
-    private ArrayList<Notification> notifications = null;
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public String getRole() {
         return role;
@@ -67,5 +68,9 @@ public class User {
 
     public ArrayList<Notification> getNotifications() {
         return notifications;
+    }
+
+    public void removeNotification(Notification notification){
+        notifications.removeIf(n -> n.equals(notification));
     }
 }

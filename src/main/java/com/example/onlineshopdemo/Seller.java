@@ -1,12 +1,19 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Seller extends User{
+public class Seller extends User implements Serializable {
     private boolean isAuth = false;
     private boolean isChecked = false;
     private Wallet wallet;
     private ArrayList<Product> products = new ArrayList<>();
+
+    private ArrayList<Transaction> transactions = new ArrayList<>();
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
 
     public ArrayList<Product> getProducts() {
         return products;
@@ -32,6 +39,10 @@ public class Seller extends User{
         super(username, password, email);
         this.wallet = new Wallet();
         this.setRole("seller");
+
+        Notification welcome = new Notification("Welcome to Online Shop!");
+        welcome.setText("Hope you have a great time selling shit to people :)");
+        this.addNotification(welcome);
     }
 
     public boolean isAuth() {
@@ -60,5 +71,17 @@ public class Seller extends User{
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void addTransaction(Transaction transaction){
+        if(!transactions.contains(transaction)){
+            transactions.add(transaction);
+        }
+    }
+
+    public void addProduct(Product product){
+        if(!products.contains(product)){
+            products.add(product);
+        }
     }
 }

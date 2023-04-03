@@ -1,9 +1,11 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
-public class Order {
+public class Order implements Serializable {
     private Cart cart;
     private Date date;
     private int totalPrice;
@@ -22,6 +24,10 @@ public class Order {
 
     public Date getDate() {
         return date;
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 
     public int getTotalPrice() {
@@ -48,7 +54,34 @@ public class Order {
         this.isChecked = true;
         this.isConfirmed = true;
         costumer.getWallet().withdrawl(totalPrice);
-        // TODO: add 90 percent of money to sellers and 10 percent to shop
+
+        HashMap<Seller, Integer> amounts = new HashMap<Seller, Integer>();
+        for(Item item : cart.getItems()){
+            if(amounts.containsKey(item.getProduct().getSeller())){
+                amounts.put(item.getProduct().getSeller(), amounts.get(item.getProduct().getSeller()) + item.getCount() * item.getProduct().getPrice());
+            }
+            else {
+                amounts.put(item.getProduct().getSeller(), item.getCount() * item.getProduct().getPrice());
+            }
+
+            item.getProduct().decreaseCount(item.getCount());
+            costumer.addToPerchasedProducts(item);
+        }
+
+        for(Seller seller : amounts.keySet()){
+            Notification notification = new Notification("You just sold an item!");
+            notification.setText("For more details, ckeckout your trancations");
+            seller.addNotification(notification);
+
+            Transaction transaction = new Transaction(new Date(), (int)(amounts.get(seller)*0.9), costumer, seller);
+            seller.getWallet().deposite((int)(amounts.get(seller)*0.9));
+            seller.addTransaction(transaction);
+            OnlineShop.increaseTotalProfit((int)(amounts.get(seller)*0.1));
+        }
+
+        Notification notification = new Notification("Your order is confirmed!");
+        notification.setText("Your notification was viewed and confirmed by the admins :)");
+        costumer.addNotification(notification);
     }
 
     public void deny(){

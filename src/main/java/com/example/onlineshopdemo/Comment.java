@@ -1,6 +1,8 @@
 package com.example.onlineshopdemo;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private String text;
     private Product product;
     private Costumer costumer;

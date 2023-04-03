@@ -15,6 +15,7 @@ public class Test {
         Seller seller1 = new Seller("Rana", "1234", "test@test.com");
         Seller seller2 = new Seller("mamad", "1234", "test@test.com");
         Seller seller3 = new Seller("amirhosien", "1234", "test@test.com");
+        seller1.authorize();
 
         OnlineShop.addSeller(seller1);
         OnlineShop.addSeller(seller2);
@@ -68,6 +69,7 @@ public class Test {
         Product product7 = new Product("red t-shirt", 20,6, seller1, subCategory7);
         Product product8 = new Product("jean west", 50,2, seller2, subCategory8);
         Product product9 = new Product("just a normal pair of socks", 5, 2, seller3, subCategory9);
+        product1.setDesciption("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
         OnlineShop.addProduct(product1);
         OnlineShop.addProduct(product2);
@@ -78,5 +80,13 @@ public class Test {
         OnlineShop.addProduct(product7);
         OnlineShop.addProduct(product8);
         OnlineShop.addProduct(product9);
+
+        Comment comment1 = new Comment("Goooooood!", product1, costumer1);
+        Comment comment2 = new Comment("Niceeee!", product1, costumer2);
+        Comment comment3 = new Comment("baaaaad!", product1, costumer3);
+
+        product1.addComment(comment1);
+        product1.addComment(comment3);
+        product1.addComment(comment2);
     }
 }

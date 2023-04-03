@@ -1,8 +1,9 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private Date date;
     private int amount;
     private User from;
@@ -13,6 +14,14 @@ public class Transaction {
         this.amount = amount;
         this.from = from;
         this.to = to;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public User getFrom() {
+        return from;
     }
 
     @Override

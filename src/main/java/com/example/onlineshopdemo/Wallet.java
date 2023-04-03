@@ -1,6 +1,8 @@
 package com.example.onlineshopdemo;
 
-public class Wallet {
+import java.io.Serializable;
+
+public class Wallet implements Serializable {
     private int balance;
 
     public void deposite(int amount){

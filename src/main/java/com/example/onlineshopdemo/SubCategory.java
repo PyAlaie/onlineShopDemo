@@ -1,6 +1,8 @@
 package com.example.onlineshopdemo;
 
-public class SubCategory{
+import java.io.Serializable;
+
+public class SubCategory implements Serializable {
     private String subTitle;
     private Category category;
 

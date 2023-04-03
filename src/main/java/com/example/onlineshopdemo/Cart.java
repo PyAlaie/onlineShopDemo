@@ -1,9 +1,10 @@
 package com.example.onlineshopdemo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Cart {
+public class Cart implements Serializable {
     private ArrayList<Item> items = new ArrayList<>();
     private boolean checkedOut = false;
 
@@ -42,11 +43,4 @@ public class Cart {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        Cart c = new Cart();
-//        c.checkout();
-    }
-
-
 }
