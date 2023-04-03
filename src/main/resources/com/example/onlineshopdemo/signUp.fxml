@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainContainer" prefHeight="370.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshopdemo.SignUp">
+   <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="65.0" layoutY="40.0" prefHeight="50.0" prefWidth="250.0" promptText="Username / Company Name" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </TextField>
+   <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="65.0" layoutY="100.0" prefHeight="50.0" prefWidth="250.0" promptText="Password" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </TextField>
+   <TextField fx:id="emailTextField" alignment="CENTER" layoutX="65.0" layoutY="160.0" prefHeight="50.0" prefWidth="250.0" promptText="Email" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </TextField>
+   <Button styleClass="login-button" fx:id="signUpButton" layoutX="126.0" layoutY="278.0" mnemonicParsing="false" onAction="#signUp" prefHeight="38.0" prefWidth="128.0" text="Sign Up" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" />
+   <Label fx:id="warningLabel" alignment="CENTER" layoutX="-7.0" layoutY="234.0" prefHeight="16.0" prefWidth="388.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <RadioButton fx:id="sellerRadioButton" layoutX="65.0" layoutY="225.0" mnemonicParsing="false" text="Seller">
+      <toggleGroup>
+         <ToggleGroup fx:id="role" />
+      </toggleGroup>
+      <font>
+         <Font size="15.0" />
+      </font>
+   </RadioButton>
+   <RadioButton fx:id="costumerRadioButton" layoutX="150.0" layoutY="225.0" mnemonicParsing="false" selected="true" text="Costumer" toggleGroup="$role">
+      <font>
+         <Font size="15.0" />
+      </font></RadioButton>
+</AnchorPane>
