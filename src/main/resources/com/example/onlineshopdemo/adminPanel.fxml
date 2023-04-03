@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="699.0"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.onlineshopdemo.AdminPanel">
+   <SplitPane dividerPositions="0.25335120643431636" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="448.0" prefWidth="575.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+         <Button styleClass="tab-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showSellers"
+                 prefHeight="58.0" prefWidth="195.0" text="Sellers">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button styleClass="tab-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                 onAction="#showFundRequests" prefHeight="58.0" prefWidth="195.0" text="Fund Requests"
+                 textAlignment="CENTER">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button styleClass="tab-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                 onAction="#showOrders" prefHeight="58.0" prefWidth="195.0" text="Orders">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button styleClass="tab-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                 onAction="#showProducts" prefHeight="58.0" prefWidth="195.0" text="Products">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button styleClass="tab-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                 onAction="#addAdmin" prefHeight="58.0" prefWidth="195.0" text="Add admin">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+      </VBox>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="616.0">
+         <VBox fx:id="mainVbox" alignment="TOP_CENTER" prefHeight="485.0" prefWidth="517.0"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0"/>
+      </AnchorPane>
+   </SplitPane>
+   <AnchorPane prefHeight="40.0" prefWidth="699.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+      <Button styleClass="navbar-button" layoutX="598.0" mnemonicParsing="false" onAction="#logoutBtnHit" prefHeight="40.0"
+              prefWidth="100.0" text="Log Out" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="15.0"/>
+         </font>
+      </Button>
+      <Label fx:id="statusLabel" layoutX="79.0" layoutY="12.0" prefHeight="41.0" prefWidth="313.0" text="Label"
+             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Button styleClass="navbar-button" layoutX="507.0" mnemonicParsing="false" onAction="#profileView" prefHeight="41.0"
+              prefWidth="91.0" text="Profile" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.rightAnchor="100.09068648671501" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="15.0"/>
+         </font>
+      </Button>
+   </AnchorPane>
+</AnchorPane>
