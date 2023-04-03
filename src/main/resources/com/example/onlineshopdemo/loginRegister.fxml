@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainContainer" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.onlineshopdemo.LoginRegister">
+   <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="151.0" layoutY="134.0" prefHeight="50.0" prefWidth="298.0" promptText="Username / Company Name" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextField>
+   <TextField fx:id="passwordTextField" alignment="CENTER" layoutX="151.0" layoutY="197.0" prefHeight="50.0" prefWidth="298.0" promptText="Password" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextField>
+   <Button fx:id="loginButton" layoutX="151.0" layoutY="269.0" mnemonicParsing="false" onAction="#hitLoginButton" prefHeight="36.0" prefWidth="147.0" styleClass="login-button" text="Login" AnchorPane.leftAnchor="151.0" />
+   <Button fx:id="openSignUpPaneButton" layoutX="303.0" layoutY="269.0" mnemonicParsing="false" onAction="#goToSignUpPage" prefHeight="36.0" prefWidth="148.0" styleClass="login-button" text="Sign Up" AnchorPane.rightAnchor="150.0" />
+   <Label fx:id="title" alignment="CENTER" layoutX="3.0" layoutY="40.0" prefHeight="71.0" prefWidth="600.0" text="Some Text" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <font>
+         <Font size="29.0" />
+      </font>
+   </Label>
+</AnchorPane>
