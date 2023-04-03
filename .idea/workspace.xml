@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6ecc947-5ce4-419e-a6ed-9745f0aa9f4b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Costumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Costumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/FundRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/FundRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/OnlineShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/OnlineShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Seller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/SubCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/SubCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Transaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Wallet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +51,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2NDqssFeIr44FZjc7KdIdzOyxbl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -48,16 +60,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "project.structure.last.edited": "Global Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.56551725"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.56551725&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.onlineshopdemo" />
@@ -73,5 +86,21 @@
       <updated>1679209213860</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/onlineShopDemo$HelloApplication.ic" NAME="HelloApplication Coverage Results" MODIFIED="1679895208646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.onlineshopdemo.*</FILTER>
+    </SUITE>
   </component>
 </project>
