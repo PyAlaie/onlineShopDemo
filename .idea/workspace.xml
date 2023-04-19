@@ -9,26 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6ecc947-5ce4-419e-a6ed-9745f0aa9f4b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Costumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Costumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/FundRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/FundRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/SubCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/SubCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/onlineshopdemo/Wallet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

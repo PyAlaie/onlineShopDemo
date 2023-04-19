@@ -29,7 +29,7 @@ public class FundRequest implements Serializable {
         return isConfirmed;
     }
 
-    public void confirm(){
+        public void confirm(){
         this.isChecked = true;
         this.isConfirmed = true;
         this.costumer.getWallet().deposite(this.amount);

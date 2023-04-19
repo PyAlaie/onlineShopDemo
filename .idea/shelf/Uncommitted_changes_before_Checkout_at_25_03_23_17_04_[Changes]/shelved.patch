@@ -1,0 +1,393 @@
+Index: src/main/java/com/example/onlineshopdemo/Seller.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\npublic class Seller extends User{\n    private boolean isAuth = false;\n    private boolean isChecked = false;\n    private Wallet wallet;\n\n    public Seller(String username, String password, String email) {\n        super(username, password, email);\n        this.wallet = new Wallet();\n        this.setRole(\"seller\");\n    }\n\n    public boolean isAuth() {\n        return isAuth;\n    }\n\n    public boolean isChecked() {\n        return isChecked;\n    }\n\n    public void authorize(){\n        this.isAuth = true;\n        this.isChecked = true;\n    }\n\n    public void unauthorize(){\n        this.isChecked = true;\n        this.isAuth = false;\n    }\n\n    @Override\n    public String toString() {\n        return \"Seller{\" +\n                \"isAuth=\" + isAuth +\n                \", username='\" + username + '\\'' +\n                \", password='\" + password + '\\'' +\n                \", email='\" + email + '\\'' +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Seller.java b/src/main/java/com/example/onlineshopdemo/Seller.java
+--- a/src/main/java/com/example/onlineshopdemo/Seller.java	
++++ b/src/main/java/com/example/onlineshopdemo/Seller.java	
+@@ -1,9 +1,12 @@
+ package com.example.onlineshopdemo;
+ 
++import java.util.ArrayList;
++
+ public class Seller extends User{
+     private boolean isAuth = false;
+     private boolean isChecked = false;
+     private Wallet wallet;
++    private ArrayList<Product> products = new ArrayList<>();
+ 
+     public Seller(String username, String password, String email) {
+         super(username, password, email);
+@@ -11,6 +14,14 @@
+         this.setRole("seller");
+     }
+ 
++    public Wallet getWallet() {
++        return wallet;
++    }
++
++    public ArrayList<Product> getProducts() {
++        return products;
++    }
++
+     public boolean isAuth() {
+         return isAuth;
+     }
+@@ -38,4 +49,12 @@
+                 ", email='" + email + '\'' +
+                 '}';
+     }
++
++    public void addProduct(Product product){
++        if(!products.contains(product)){
++            products.add(product);
++        }
++    }
++
++
+ }
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'java'\n    id 'application'\n    id 'org.javamodularity.moduleplugin' version '1.8.12'\n    id 'org.openjfx.javafxplugin' version '0.0.13'\n    id 'org.beryx.jlink' version '2.25.0'\n}\n\ngroup 'com.example'\nversion '1.0-SNAPSHOT'\n\nrepositories {\n    mavenCentral()\n}\n\next {\n    junitVersion = '5.9.1'\n}\n\nsourceCompatibility = '19'\ntargetCompatibility = '19'\n\ntasks.withType(JavaCompile) {\n    options.encoding = 'UTF-8'\n}\n\napplication {\n    mainModule = 'com.example.onlineshopdemo'\n    mainClass = 'com.example.onlineshopdemo.HelloApplication'\n}\n\njavafx {\n    version = '19'\n    modules = ['javafx.controls', 'javafx.fxml']\n}\n\ndependencies {\n\n    testImplementation(\"org.junit.jupiter:junit-jupiter-api:${junitVersion}\")\n    testRuntimeOnly(\"org.junit.jupiter:junit-jupiter-engine:${junitVersion}\")\n}\n\ntest {\n    useJUnitPlatform()\n}\n\njlink {\n    imageZip = project.file(\"${buildDir}/distributions/app-${javafx.platform.classifier}.zip\")\n    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']\n    launcher {\n        name = 'app'\n    }\n}\n\njlinkZip {\n    group = 'distribution'\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	
++++ b/build.gradle	
+@@ -38,6 +38,7 @@
+ 
+     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
++    implementation 'com.pixelduke:FXSkins:1.0.0'
+ }
+ 
+ test {
+Index: src/main/java/com/example/onlineshopdemo/Cart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\nimport java.util.ArrayList;\nimport java.util.Date;\n\npublic class Cart {\n    private ArrayList<Item> items = new ArrayList<>();\n    private boolean checkedOut = false;\n\n    public ArrayList<Item> getItems() {\n        return items;\n    }\n\n    @Override\n    public String toString() {\n        return \"Cart{\" +\n                \"items=\" + items +\n                \", checkedOut=\" + checkedOut +\n                '}';\n    }\n\n    public void addItem(Item item) {\n        this.items.add(item);\n    }\n\n    public Order checkout(Costumer costumer){\n        Date date = new Date();\n        ArrayList<Seller> sellers = new ArrayList<>();\n        for(Item item : items){\n            if(!sellers.contains(item.getProduct().getSeller())){\n                sellers.add(item.getProduct().getSeller());\n            }\n        }\n        this.checkedOut = true;\n        return new Order(date, this.calculteTotalPrice(), costumer, sellers, this);\n    }\n\n    public int calculteTotalPrice(){\n        int res = 0;\n        for(Item item : items){\n            res += item.getCount() * item.getProduct().getPrice();\n        }\n        return res;\n    }\n\n    public static void main(String[] args) {\n        Cart c = new Cart();\n//        c.checkout();\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Cart.java b/src/main/java/com/example/onlineshopdemo/Cart.java
+--- a/src/main/java/com/example/onlineshopdemo/Cart.java	
++++ b/src/main/java/com/example/onlineshopdemo/Cart.java	
+@@ -20,7 +20,13 @@
+     }
+ 
+     public void addItem(Item item) {
+-        this.items.add(item);
++        for (Item item1 : items){
++            if(item1.getProduct().equals(item.getProduct())){
++                item1.setCount(item.getCount() + item1.getCount());
++                return;
++            }
++        }
++        items.add(item);
+     }
+ 
+     public Order checkout(Costumer costumer){
+@@ -32,6 +38,7 @@
+             }
+         }
+         this.checkedOut = true;
++        costumer.clearCarts();
+         return new Order(date, this.calculteTotalPrice(), costumer, sellers, this);
+     }
+ 
+Index: src/main/java/com/example/onlineshopdemo/SubCategory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\npublic class SubCategory{\n    private String subTitle;\n    private Category category;\n\n    public SubCategory(Category category, String subTitle) {\n        this.category = category;\n        this.subTitle = subTitle;\n    }\n\n    public String getSubTitle() {\n        return subTitle;\n    }\n\n    public void setSubTitle(String subTitle) {\n        this.subTitle = subTitle;\n    }\n\n    @Override\n    public String toString() {\n        return this.category.getTitle() + \"/\" + this.subTitle;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/SubCategory.java b/src/main/java/com/example/onlineshopdemo/SubCategory.java
+--- a/src/main/java/com/example/onlineshopdemo/SubCategory.java	
++++ b/src/main/java/com/example/onlineshopdemo/SubCategory.java	
+@@ -13,6 +13,10 @@
+         return subTitle;
+     }
+ 
++    public Category getCategory() {
++        return category;
++    }
++
+     public void setSubTitle(String subTitle) {
+         this.subTitle = subTitle;
+     }
+Index: src/main/java/com/example/onlineshopdemo/Category.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\npublic class Category {\n    private String title;\n\n    public Category(String title) {\n        this.title = title;\n    }\n\n    public String getTitle() {\n        return title;\n    }\n\n    public void setTitle(String title) {\n        this.title = title;\n    }\n\n    @Override\n    public String toString() {\n        return this.title;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Category.java b/src/main/java/com/example/onlineshopdemo/Category.java
+--- a/src/main/java/com/example/onlineshopdemo/Category.java	
++++ b/src/main/java/com/example/onlineshopdemo/Category.java	
+@@ -1,5 +1,7 @@
+ package com.example.onlineshopdemo;
+ 
++import java.util.Objects;
++
+ public class Category {
+     private String title;
+ 
+@@ -19,4 +21,12 @@
+     public String toString() {
+         return this.title;
+     }
++
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++        if (o == null || getClass() != o.getClass()) return false;
++        Category category = (Category) o;
++        return Objects.equals(title, category.title);
++    }
+ }
+Index: src/main/java/com/example/onlineshopdemo/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\npublic class Product {\n    private String name;\n    private int price;\n    private int count;\n    public String desciption;\n    private Seller seller = null;\n    private SubCategory category = null;\n\n    public Product(String name, int price, int count) {\n        this.name = name;\n        this.price = price;\n        this.count = count;\n    }\n\n    public Product(String name, int price, int count, SubCategory category) {\n        this.name = name;\n        this.price = price;\n        this.count = count;\n        this.category = category;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public void setPrice(int price) {\n        this.price = price;\n    }\n\n    public void setCount(int count) {\n        this.count = count;\n    }\n\n    public void setDesciption(String desciption) {\n        this.desciption = desciption;\n    }\n\n    public void setCategory(SubCategory category) {\n        this.category = category;\n    }\n\n    public void setSeller(Seller seller) {\n        this.seller = seller;\n    }\n\n    public Seller getSeller() {\n        return seller;\n    }\n\n    public SubCategory getCategory() {\n        return category;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getPrice() {\n        return price;\n    }\n\n    public int getCount() {\n        return count;\n    }\n\n    @Override\n    public String toString() {\n        return \"Product{\" +\n                \"name='\" + name + '\\'' +\n                \", price=\" + price +\n                \", count=\" + count +\n                \", desciption='\" + desciption + '\\'' +\n                \", seller=\" + seller +\n                \", category=\" + category +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Product.java b/src/main/java/com/example/onlineshopdemo/Product.java
+--- a/src/main/java/com/example/onlineshopdemo/Product.java	
++++ b/src/main/java/com/example/onlineshopdemo/Product.java	
+@@ -5,13 +5,14 @@
+     private int price;
+     private int count;
+     public String desciption;
+-    private Seller seller = null;
+-    private SubCategory category = null;
++    private Seller seller;
++        private SubCategory category = null;
+ 
+     public Product(String name, int price, int count) {
+         this.name = name;
+         this.price = price;
+         this.count = count;
++        this.seller = null;
+     }
+ 
+     public Product(String name, int price, int count, SubCategory category) {
+@@ -19,6 +20,15 @@
+         this.price = price;
+         this.count = count;
+         this.category = category;
++        this.seller = null;
++    }
++
++    public Product(String name, int price, int count, Seller seller, SubCategory category) {
++        this.name = name;
++        this.price = price;
++        this.count = count;
++        this.seller = seller;
++        this.category = category;
+     }
+ 
+     public void setName(String name) {
+@@ -49,7 +59,7 @@
+         return seller;
+     }
+ 
+-    public SubCategory getCategory() {
++    public SubCategory getSubCategory() {
+         return category;
+     }
+ 
+Index: src/main/java/com/example/onlineshopdemo/Costumer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\nimport java.util.ArrayList;\n\npublic class Costumer extends User{\n    private String phoneNumber = null;\n    private String address = null;\n    private Wallet wallet = new Wallet();;\n    private ArrayList<Cart> carts = new ArrayList<Cart>();\n\n    public Costumer(String username, String password, String email) {\n        super(username, password, email);\n        this.setRole(\"costumer\");\n    }\n\n    public String getPhoneNumber() {\n        return phoneNumber;\n    }\n\n    public String getAddress() {\n        return address;\n    }\n\n    public Wallet getWallet() {\n        return wallet;\n    }\n\n    public void addCart(){\n        carts.add(new Cart());\n    }\n\n    public ArrayList<Cart> getCarts() {\n        return carts;\n    }\n\n    @Override\n    public String toString() {\n        return \"Costumer{\" +\n                \"wallet=\" + wallet +\n                \", username='\" + username + '\\'' +\n                \", password='\" + password + '\\'' +\n                \", email='\" + email + '\\'' +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Costumer.java b/src/main/java/com/example/onlineshopdemo/Costumer.java
+--- a/src/main/java/com/example/onlineshopdemo/Costumer.java	
++++ b/src/main/java/com/example/onlineshopdemo/Costumer.java	
+@@ -13,6 +13,14 @@
+         this.setRole("costumer");
+     }
+ 
++    public void setPhoneNumber(String phoneNumber) {
++        this.phoneNumber = phoneNumber;
++    }
++
++    public void setAddress(String address) {
++        this.address = address;
++    }
++
+     public String getPhoneNumber() {
+         return phoneNumber;
+     }
+@@ -26,11 +34,16 @@
+     }
+ 
+     public void addCart(){
+-        carts.add(new Cart());
++        if(this.carts.size() < 1){
++            carts.add(new Cart());
++        }
+     }
+ 
+-    public ArrayList<Cart> getCarts() {
+-        return carts;
++    public Cart getCart() {
++        if(this.carts.size() < 1){
++            addCart();
++        }
++        return carts.get(0);
+     }
+ 
+     @Override
+@@ -42,4 +55,8 @@
+                 ", email='" + email + '\'' +
+                 '}';
+     }
++    public void clearCarts(){
++        this.carts.clear();
++        this.addCart();
++    }
+ }
+Index: src/main/java/com/example/onlineshopdemo/Order.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\nimport java.util.ArrayList;\nimport java.util.Date;\n\npublic class Order {\n    private Cart cart;\n    private Date date;\n    private int totalPrice;\n    private Costumer costumer;\n    private ArrayList<Seller> sellers;\n    private boolean isChecked = false;\n    private boolean isConfirmed = false;\n\n    public Order(Date date, int totalPrice, Costumer costumer, ArrayList<Seller> seller, Cart cart) {\n        this.date = date;\n        this.totalPrice = totalPrice;\n        this.costumer = costumer;\n        this.sellers = seller;\n        this.cart = cart;\n    }\n\n    public Date getDate() {\n        return date;\n    }\n\n    public int getTotalPrice() {\n        return totalPrice;\n    }\n\n    public Costumer getCostumer() {\n        return costumer;\n    }\n\n    public ArrayList<Seller> getSeller() {\n        return sellers;\n    }\n\n    public boolean isChecked() {\n        return isChecked;\n    }\n\n    public boolean isConfirmed() {\n        return isConfirmed;\n    }\n\n    public void confirm(){\n        this.isChecked = true;\n        this.isConfirmed = true;\n        costumer.getWallet().withdrawl(totalPrice);\n        // TODO: add 90 percent of money to sellers and 10 percent to shop\n    }\n\n    public void deny(){\n        this.isChecked = true;\n        this.isConfirmed = false;\n    }\n\n    @Override\n    public String toString() {\n        return \"Order{\" +\n                \"cart=\" + cart +\n                \", date=\" + date +\n                \", totalPrice=\" + totalPrice +\n                \", costumer=\" + costumer +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/Order.java b/src/main/java/com/example/onlineshopdemo/Order.java
+--- a/src/main/java/com/example/onlineshopdemo/Order.java	
++++ b/src/main/java/com/example/onlineshopdemo/Order.java	
+@@ -48,7 +48,13 @@
+         this.isChecked = true;
+         this.isConfirmed = true;
+         costumer.getWallet().withdrawl(totalPrice);
+-        // TODO: add 90 percent of money to sellers and 10 percent to shop
++
++        for(Item item : cart.getItems()){
++            int totalCostOfItem = item.getCount() * item.getProduct().getPrice();
++
++            item.getProduct().getSeller().getWallet().deposite((int)(totalCostOfItem * 0.9));
++            OnlineShop.increaseProfit((int)(totalCostOfItem * 0.1));
++        }
+     }
+ 
+     public void deny(){
+Index: src/main/java/com/example/onlineshopdemo/OnlineShop.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.onlineshopdemo;\n\nimport java.util.ArrayList;\n\npublic class OnlineShop {\n\n    private static String name;\n    private static String webAddress;\n    private static String supportPhoneNumber;\n    private static int totalProfit;\n    private static ArrayList<Admin> admins = new ArrayList<Admin>();\n    private static ArrayList<Seller> sellers = new ArrayList<Seller>();\n    private static ArrayList<Costumer> costumers = new ArrayList<Costumer>();\n    private static ArrayList<FundRequest> fundRequests = new ArrayList<FundRequest>();\n    private static ArrayList<Product> products = new ArrayList<Product>();\n    private static ArrayList<Order> orders = new ArrayList<Order>();\n    private static ArrayList<Cart> carts = new ArrayList<Cart>();\n\n    private static Admin loggedInAdmin = null;\n    private static Seller loggedInSeller = null;\n    private static Costumer loggedInCostumer = null;\n    private static User loggedInUser = null;\n    public static ArrayList<Order> getOrders() {\n        return orders;\n    }\n\n    public static ArrayList<Product> getProducts() {\n        return products;\n    }\n\n    public static ArrayList<FundRequest> getFundRequests() {\n        return fundRequests;\n    }\n\n    public static String getName() {\n        return name;\n    }\n\n    public static ArrayList<Seller> getSellers() {\n        return sellers;\n    }\n\n    public static void setName(String name) {\n        OnlineShop.name = name;\n    }\n\n    public static String getWebAddress() {\n        return webAddress;\n    }\n\n    public static void setWebAddress(String webAddress) {\n        OnlineShop.webAddress = webAddress;\n    }\n\n    public static String getSupportPhoneNumber() {\n        return supportPhoneNumber;\n    }\n\n    public static void setSupportPhoneNumber(String supportPhoneNumber) {\n        OnlineShop.supportPhoneNumber = supportPhoneNumber;\n    }\n\n    public static ArrayList<Admin> getAdmins() {\n        return admins;\n    }\n\n    public static User getLoggedInUser() {\n        return loggedInUser;\n    }\n\n    public static void setLoggedInUser(User loggedInUser) {\n        OnlineShop.loggedInUser = loggedInUser;\n    }\n\n    public static void main(String[] args) {\n//        Admin a = new Admin(\"arshia\",\"1234\",\"asdas\");\n//        OnlineShop shop = new OnlineShop();\n//        shop.getLoggedInCostumer().getCarts().get(0).addItem(new Item());\n//        shop.addAdmin(a);\n//        System.out.println(shop.getAdmins());\n    }\n\n    public static Admin getLoggedInAdmin() {\n        return loggedInAdmin;\n    }\n\n    public static Seller getLoggedInSeller() {\n        return loggedInSeller;\n    }\n\n    public static Costumer getLoggedInCostumer() {\n        return loggedInCostumer;\n    }\n\n    public static void addAdmin(Admin admin){\n        if(!doesAdminExist(admin.username)){\n            admins.add(admin);\n        }\n    }\n\n    public static boolean doesAdminExist(String username){\n        for(Admin admin : admins){\n            if(admin.username.equals(username)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static boolean authenticateAdmin(String username, String password){\n        for(Admin admin : admins){\n            if(admin.username.equals(username) && admin.password.equals(password)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static void loginAdmin(String username){\n        for(Admin admin : admins){\n            if(admin.username.equals(username)){\n                loggedInAdmin = admin;\n                loggedInUser = admin;\n            }\n        }\n    }\n\n    public static void logoutAdmin(){\n        loggedInAdmin = null;\n        loggedInUser = null;\n    }\n\n    public static ArrayList<FundRequest> getUncheckedFundRequests(){\n        ArrayList<FundRequest> res = new ArrayList<>();\n        for(FundRequest req : fundRequests){\n            if(!req.isChecked()){\n                res.add(req);\n            }\n        }\n        return res;\n    }\n\n    public static ArrayList<Seller> getUncheckedSellers(){\n        ArrayList<Seller> res = new ArrayList<>();\n        for(Seller req : sellers){\n            if(!req.isChecked()){\n                res.add(req);\n            }\n        }\n        return res;\n    }\n    public static ArrayList<Order> getUncheckedOrders(){\n        ArrayList<Order> res = new ArrayList<>();\n        for(Order order : orders){\n            if(!order.isChecked()){\n                res.add(order);\n            }\n        }\n        return res;\n    }\n\n    public static void addSeller(Seller seller){\n        if(!doesSellerExist(seller.username)){\n            sellers.add(seller);\n        }\n    }\n\n    public static boolean doesSellerExist(String username){\n        for(Seller seller : sellers){\n            if(seller.username.equals(username)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static boolean authenticateSeller(String username, String password){\n        for(Seller seller : sellers){\n            if(seller.username.equals(username) && seller.password.equals(password)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static void loginSeller(String username){\n        for(Seller seller : sellers){\n            if(seller.username.equals(username)){\n                loggedInSeller = seller;\n                loggedInUser = seller;\n            }\n        }\n    }\n\n    public static void logoutSeller(){\n        loggedInSeller = null;\n        loggedInUser = null;\n    }\n\n    public static void addProduct(Product product){\n        if(!doesProductExist(product.getName())){\n            product.setSeller(loggedInSeller);\n            products.add(product);\n        }\n    }\n\n    public static boolean doesProductExist(String name){\n        for(Product product : products){\n            if(product.getName().equals(name)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static void addCostumer(Costumer costumer){\n        if(!doesCostumerExist(costumer.username)){\n            costumers.add(costumer);\n        }\n    }\n\n    public static boolean doesCostumerExist(String username){\n        for(Costumer costumer : costumers){\n            if(costumer.username.equals(username)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static boolean authenticateCostumer(String username, String password){\n        for(Costumer costumer : costumers){\n            if(costumer.username.equals(username) && costumer.password.equals(password)){\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public static void loginCostumer(String username){\n        for(Costumer costumer : costumers){\n            if(costumer.username.equals(username)){\n                loggedInCostumer = costumer;\n                loggedInUser = costumer;\n            }\n        }\n    }\n\n    public static void logoutCostumer(){\n        loggedInCostumer = null;\n        loggedInUser = null;\n    }\n\n    public static void addCartToLoggedInCostumer(){\n        if(loggedInCostumer != null){\n            loggedInCostumer.addCart();\n        }\n    }\n\n    public static void orderCart(Cart cart){\n        Order order = cart.checkout(loggedInCostumer);\n        orders.add(order);\n    }\n\n    public static boolean isBlank(String input){\n        if(input.equals(\"\")){\n            return true;\n        }\n        return false;\n    }\n\n    public static void addFundRequest(FundRequest fundRequest){\n        if(!fundRequests.contains(fundRequest)){\n            fundRequests.add(fundRequest);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/onlineshopdemo/OnlineShop.java b/src/main/java/com/example/onlineshopdemo/OnlineShop.java
+--- a/src/main/java/com/example/onlineshopdemo/OnlineShop.java	
++++ b/src/main/java/com/example/onlineshopdemo/OnlineShop.java	
+@@ -15,6 +15,8 @@
+     private static ArrayList<Product> products = new ArrayList<Product>();
+     private static ArrayList<Order> orders = new ArrayList<Order>();
+     private static ArrayList<Cart> carts = new ArrayList<Cart>();
++    private static ArrayList<Category> categories = new ArrayList<>();
++    private static ArrayList<SubCategory> subCategories = new ArrayList<>();
+ 
+     private static Admin loggedInAdmin = null;
+     private static Seller loggedInSeller = null;
+@@ -24,6 +26,18 @@
+         return orders;
+     }
+ 
++    public static void setTotalProfit(int totalProfit) {
++        OnlineShop.totalProfit = totalProfit;
++    }
++
++    public static int getTotalProfit() {
++        return totalProfit;
++    }
++
++    public static void increaseProfit(int amount){
++        totalProfit += amount;
++    }
++
+     public static ArrayList<Product> getProducts() {
+         return products;
+     }
+@@ -80,6 +94,24 @@
+ //        System.out.println(shop.getAdmins());
+     }
+ 
++    public static ArrayList<Category> getCategories() {
++        return categories;
++    }
++
++    public static ArrayList<SubCategory> getSubCategories() {
++        return subCategories;
++    }
++
++    public static ArrayList<SubCategory> getSubCategories(Category category) {
++        ArrayList<SubCategory> res = new ArrayList<>();
++        for(SubCategory s : subCategories){
++            if(s.getCategory().equals(category)){
++                res.add(s);
++            }
++        }
++        return res;
++    }
++
+     public static Admin getLoggedInAdmin() {
+         return loggedInAdmin;
+     }
+@@ -199,7 +231,7 @@
+ 
+     public static void addProduct(Product product){
+         if(!doesProductExist(product.getName())){
+-            product.setSeller(loggedInSeller);
++            product.getSeller().addProduct(product);
+             products.add(product);
+         }
+     }
+@@ -274,4 +306,35 @@
+             fundRequests.add(fundRequest);
+         }
+     }
++
++    public static void addCategory(Category category){
++        if(!categories.contains(category)){
++            categories.add(category);
++        }
++    }
++
++    public static void addSubCategory(SubCategory subCategory){
++        if(!subCategories.contains(subCategory)){
++            subCategories.add(subCategory);
++        }
++    }
++
++    public static Category getCategoryByTitle(String title){
++        for(Category c : categories){
++            if(c.getTitle().equals(title)){
++                return c;
++            }
++        }
++        return null;
++    }
++
++    public static ArrayList<Order> getSellerOrders(Seller seller){
++        ArrayList<Order> res = new ArrayList<>();
++        for(Order order : orders){
++            if(order.getSeller().contains(seller)){
++                res.add(order);
++            }
++        }
++        return res;
++    }
+ }
